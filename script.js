@@ -1,3 +1,4 @@
+// returns a random item from array
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
   const randomIndex = [Math.floor(Math.random() * choices.length)];
@@ -5,6 +6,7 @@ function getComputerChoice() {
   return cpuChoice;
 }
 
+// conditional logic for a single game of RPS
 function renderGame(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return "It's a tie!";
@@ -31,30 +33,13 @@ function renderGame(playerSelection, computerSelection) {
   }
 }
 
-// {
-//   if (playerSelection === computerSelection) {
-//     console.log("It's a tie!");
-//   }
-//   if (playerSelection == "rock" && computerSelection == "scissors") {
-//     console.log("You win! Rock beats scissors.");
-//   } else if (playerSelection == "rock" && computerSelection == "paper") {
-//     console.log("Computer wins! Paper beats rock.");
-//   }
-//   if (playerSelection == "paper" && computerSelection == "rock") {
-//     console.log("You win! Paper beats rock.");
-//   } else if (playerSelection == "paper" && computerSelection == "scissors") {
-//     console.log("Computer wins! Scissors beats paper.");
-//   }
-//   if (playerSelection == "scissors" && computerSelection == "paper") {
-//     console.log("You win! Scissors beats paper.");
-//   } else if (playerSelection == "scissors" && computerSelection == "rock") {
-//     console.log("Computer wins! Rock beats scissors.");
-//   }
-// }
+// loops through 5 rounds of RPS, keeps score, and reports a winner/loser at the end
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+    const computerSelection = getComputerChoice();
+    console.log(renderGame(playerSelection, computerSelection));
+  }
+}
 
-const playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-const computerSelection = getComputerChoice();
-
-console.log(computerSelection);
-console.log(playerSelection);
-console.log(renderGame(playerSelection, computerSelection));
+game();
