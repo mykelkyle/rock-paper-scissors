@@ -32,11 +32,15 @@ btnScissors.addEventListener("click", () => {
 });
 
 btnClear.addEventListener("click", () => {
-  btnContainer.classList.remove("hidden");
+  btnRock.classList.remove("hidden");
+  btnPaper.classList.remove("hidden");
+  btnScissors.classList.remove("hidden");
+
   btnClear.classList.add("hidden");
   pScore.textContent = 0;
   cScore.textContent = 0;
   gameOver.textContent = "";
+  results.textContent = "Press any button to start!";
 });
 
 // returns a random item from array
@@ -80,14 +84,24 @@ function renderGame(playerSelection, computerSelection) {
   if (pScore.textContent == 5) {
     btnClear.classList.remove("hidden");
     gameOver.textContent = "Game over. You win!";
-    btnContainer.classList.add("hidden");
+
+    btnRock.classList.add("hidden");
+    btnPaper.classList.add("hidden");
+    btnScissors.classList.add("hidden");
+
     btnClear.textContent = "Play Again?";
+    btnClear.classList.add("btnClear");
     gameOver.appendChild(btnClear);
   } else if (cScore.textContent == 5) {
     btnClear.classList.remove("hidden");
     gameOver.textContent = "Game over. You lose!";
-    btnContainer.classList.add("hidden");
+
+    btnRock.classList.add("hidden");
+    btnPaper.classList.add("hidden");
+    btnScissors.classList.add("hidden");
+
     btnClear.textContent = "Play Again?";
+    btnClear.classList.add("btnClear");
     gameOver.appendChild(btnClear);
   }
 }

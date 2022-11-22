@@ -6,29 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="stylesheet.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+    </style>
     <title>Rock, Paper, Scissors!</title>
   </head>
   <body>
-    <div>
-      <div>
-        Player
+    <!-- header -->
+    <div class="header">
+      <div class="header-text">Rock, Paper, Scissors!</div>
+    </div>
+    <!-- player boxes -->
+    <div class="playerBoxContainer">
+      <div class="playerBox">
+        <div>Player</div>
         <div id="pScore">0</div>
       </div>
-      <div>Vs.</div>
-      <div>
-        CPU
+      <div id="vs">VS.</div>
+      <div class="playerBox">
+        <div>CPU</div>
         <div id="cScore">0</div>
       </div>
     </div>
-    <div>
-      Results
-      <div id="results"></div>
+    <!-- results + game over message -->
+    <div class="resultBox">
+      <div id="results">Press any button to start!</div>
       <div id="gameOver"></div>
     </div>
+    <!-- button container -->
     <div id="btn-container">
-      <button id="btn-rock">Rock</button>
-      <button id="btn-paper">Paper</button>
-      <button id="btn-scissors">Scissors</button>
+      <div>
+        <button id="btn-rock">👊</button>
+      </div>
+      <div>
+        <button id="btn-paper">✋</button>
+      </div>
+      <div>
+        <button id="btn-scissors">✌</button>
+      </div>
     </div>
+    <!-- footer -->
+    <div class="footer">Created by Mykel Murphy</div>
   </body>
 </html>
