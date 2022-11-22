@@ -2,30 +2,42 @@ let playerScore = 0;
 let computerScore = 0;
 let playerScoreMessage = "Your score is: ";
 let computerScoreMessage = "The computer's score is: ";
+let pScore = document.getElementById("pScore");
+let cScore = document.getElementById("cScore");
+const btnContainer = document.getElementById("btn-container");
+const btnRock = document.getElementById("btn-rock");
+const btnPaper = document.getElementById("btn-paper");
+const btnScissors = document.getElementById("btn-scissors");
+const results = document.getElementById("results");
+const gameOver = document.getElementById("gameOver");
+const btnClear = document.createElement("button");
 
-// loops through 5 rounds of RPS, keeps score, and reports a winner/loser at the end
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
-    const computerSelection = getComputerChoice();
+// event listeners for btns -- runs logic for single game of RPS
+btnRock.addEventListener("click", () => {
+  playerSelection = "rock";
+  const computerSelection = getComputerChoice();
+  renderGame(playerSelection, computerSelection);
+});
 
-    console.log(renderGame(playerSelection, computerSelection));
-    console.log(playerScoreMessage + playerScore);
-    console.log(computerScoreMessage + computerScore);
+btnPaper.addEventListener("click", () => {
+  playerSelection = "paper";
+  const computerSelection = getComputerChoice();
+  renderGame(playerSelection, computerSelection);
+});
 
-    if (i === 4) {
-      if (playerScore > computerScore) {
-        console.log(`The game has ended! You are the winner!`);
-      } else if (computerScore > playerScore) {
-        console.log(`The game has ended! The computer wins!`);
-      } else {
-        console.log(`The game has ended! It's a tie!`);
-      }
-      playerScore = 0;
-      computerScore = 0;
-    }
-  }
-}
+btnScissors.addEventListener("click", () => {
+  playerSelection = "scissors";
+  const computerSelection = getComputerChoice();
+  renderGame(playerSelection, computerSelection);
+});
+
+btnClear.addEventListener("click", () => {
+  btnContainer.classList.remove("hidden");
+  btnClear.classList.add("hidden");
+  pScore.textContent = 0;
+  cScore.textContent = 0;
+  gameOver.textContent = "";
+});
 
 // returns a random item from array
 function getComputerChoice() {
@@ -38,34 +50,44 @@ function getComputerChoice() {
 // conditional logic for a single game of RPS
 function renderGame(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return "It's a tie!";
+    results.textContent = "It's a tie!";
   } else if (playerSelection == "rock") {
     if (computerSelection == "scissors") {
-      playerScore++;
-      return "You win! Rock beats scissors.";
+      pScore.textContent++;
+      results.textContent = "You win! Rock beats scissors.";
     } else {
-      computerScore++;
-      return "You lose! Paper beats rock.";
+      cScore.textContent++;
+      results.textContent = "You lose! Paper beats rock.";
     }
   } else if (playerSelection == "paper") {
     if (computerSelection == "rock") {
-      playerScore++;
-      return "You win! Paper beats rock.";
+      pScore.textContent++;
+      results.textContent = "You win! Paper beats rock.";
     } else {
-      computerScore++;
-      return "You lose! Scissors beat paper.";
+      cScore.textContent++;
+      results.textContent = "You lose! Scissors beat paper.";
     }
   } else if (playerSelection == "scissors") {
     if (computerSelection == "paper") {
-      playerScore++;
-      return "You win! Scissors beat paper.";
+      pScore.textContent++;
+      results.textContent = "You win! Scissors beat paper.";
     } else {
-      computerScore++;
-      return "You lose! Rock beats scissors.";
+      cScore.textContent++;
+      results.textContent = "You lose! Rock beats scissors.";
     }
-  } else {
-    return "Syntax error. Check your spelling and try again!";
+  }
+
+  if (pScore.textContent == 5) {
+    btnClear.classList.remove("hidden");
+    gameOver.textContent = "Game over. You win!";
+    btnContainer.classList.add("hidden");
+    btnClear.textContent = "Play Again?";
+    gameOver.appendChild(btnClear);
+  } else if (cScore.textContent == 5) {
+    btnClear.classList.remove("hidden");
+    gameOver.textContent = "Game over. You lose!";
+    btnContainer.classList.add("hidden");
+    btnClear.textContent = "Play Again?";
+    gameOver.appendChild(btnClear);
   }
 }
-
-game();
